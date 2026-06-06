@@ -37,17 +37,17 @@
             line-height: 1.6;
             margin-bottom: 25px;
         }
-        .matcha-icon {
-            width: 120px;
-            height: auto;
+        /* Ikon Matcha Menggunakan Animasi Melayang */
+        .matcha-avatar {
+            font-size: 80px;
+            display: inline-block;
             margin-bottom: 15px;
             animation: float 3s ease-in-out infinite;
         }
-        /* Efek animasi melayang lucu untuk ikon matcha */
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
         input[type="text"] {
             width: 85%;
@@ -88,8 +88,8 @@
     <div class="container">
         <!-- FORM INPUT NAMA -->
         <div id="form-nama">
-            <!-- Icon Matcha Lucu di Halaman Depan -->
-            <img src="https://githubusercontent.com" class="matcha-icon" alt="Matcha Icon">
+            <!-- Menggunakan Komponen Grafis Bawaan Browser -->
+            <div class="matcha-avatar">🍵</div>
             <h1>✨ hallo manis ✨</h1>
             <p>Masukkan namamu dulu ya di bawah ini:</p>
             <input type="text" id="input-nama" placeholder="Ketik namamu di sini..." required>
@@ -99,8 +99,7 @@
 
         <!-- TAMPILAN UCAPAN SEMANGAT -->
         <div id="konten-pesan" class="hidden">
-            <!-- Icon Matcha Lucu Tetap Ada di Halaman Ucapan -->
-            <img src="https://githubusercontent.com" class="matcha-icon" alt="Matcha Icon">
+            <div class="matcha-avatar">🍵</div>
             <h1 id="sapaan">Hai!</h1>
             <p id="kutipan">Memuat pesan...</p>
             <button onclick="ambilSemangatBaru()">Lihat Ucapan Lainnya</button>
@@ -126,11 +125,9 @@
 
             namaPengguna = input;
             
-            // Sembunyikan form input nama, lalu munculkan pesan
             document.getElementById("form-nama").classList.add("hidden");
             document.getElementById("konten-pesan").classList.remove("hidden");
             
-            // Mengubah teks sapaan atas sesuai nama yang diinput
             document.getElementById("sapaan").innerText = `✨ Semangat, ${namaPengguna}! ✨`;
             ambilSemangatBaru();
         }
@@ -139,7 +136,7 @@
             const indeksAcak = Math.floor(Math.random() * ucapan.length);
             document.getElementById("kutipan").innerText = ucapan[indeksAcak];
             
-            // Efek kertas warna-warni (confetti) langsung meledak
+            // Efek pesta konfeti warna-warni saat dibuka
             confetti({
                 particleCount: 120,
                 spread: 70,
