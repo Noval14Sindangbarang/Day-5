@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semangat Untukmu!</title>
+    <!-- Script untuk efek confetti kertas warna-warni otomatis -->
+    <script src="https://jsdelivr.net"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Tema warna gradasi Hijau Matcha yang menenangkan */
+            background: linear-gradient(135deg, #a8e6cf, #10ac84);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: #2d3436;
+        }
+        .container {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 85%;
+        }
+        h1 {
+            color: #10ac84;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .matcha-icon {
+            width: 120px;
+            height: auto;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+        /* Efek animasi melayang lucu untuk ikon matcha */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        input[type="text"] {
+            width: 85%;
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border: 2px solid #dfe6e9;
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+            text-align: center;
+            transition: 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #10ac84;
+        }
+        button {
+            background-color: #10ac84;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0f9b75;
+            transform: scale(1.05);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- FORM INPUT NAMA -->
+        <div id="form-nama">
+            <!-- Icon Matcha Lucu di Halaman Depan -->
+            <img src="https://githubusercontent.com" class="matcha-icon" alt="Matcha Icon">
+            <h1>✨ hallo manis ✨</h1>
+            <p>Masukkan namamu dulu ya di bawah ini:</p>
+            <input type="text" id="input-nama" placeholder="Ketik namamu di sini..." required>
+            <br>
+            <button onclick="bukaPesan()">Buka Pesan</button>
+        </div>
+
+        <!-- TAMPILAN UCAPAN SEMANGAT -->
+        <div id="konten-pesan" class="hidden">
+            <!-- Icon Matcha Lucu Tetap Ada di Halaman Ucapan -->
+            <img src="https://githubusercontent.com" class="matcha-icon" alt="Matcha Icon">
+            <h1 id="sapaan">Hai!</h1>
+            <p id="kutipan">Memuat pesan...</p>
+            <button onclick="ambilSemangatBaru()">Lihat Ucapan Lainnya</button>
+        </div>
+    </div>
+
+    <script>
+        let namaPengguna = "";
+
+        // Daftar ucapan khusus milik Anda
+        const ucapan = [
+            "Daya 5 kerja",
+            "selamat pagi Mira zulyana alvazell, semangat baru untuk memulai hari ini jangan lupa mandi, dan bikin macha satu gelas agar hari hari kamu di penuhi ketenangan seperti minuman macha"
+        ];
+
+        function bukaPesan() {
+            const input = document.getElementById("input-nama").value.trim();
+            
+            if (input === "") {
+                alert("Silakan masukkan nama kamu terlebih dahulu!");
+                return;
+            }
+
+            namaPengguna = input;
+            
+            // Sembunyikan form input nama, lalu munculkan pesan
+            document.getElementById("form-nama").classList.add("hidden");
+            document.getElementById("konten-pesan").classList.remove("hidden");
+            
+            // Mengubah teks sapaan atas sesuai nama yang diinput
+            document.getElementById("sapaan").innerText = `✨ Semangat, ${namaPengguna}! ✨`;
+            ambilSemangatBaru();
+        }
+
+        function ambilSemangatBaru() {
+            const indeksAcak = Math.floor(Math.random() * ucapan.length);
+            document.getElementById("kutipan").innerText = ucapan[indeksAcak];
+            
+            // Efek kertas warna-warni (confetti) langsung meledak
+            confetti({
+                particleCount: 120,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+    </script>
+
+</body>
+</html>
